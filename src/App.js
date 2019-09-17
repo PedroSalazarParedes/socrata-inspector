@@ -16,11 +16,16 @@ class App extends Component {
    this.navigate();
   }
 
+  componentDidUpdate() {
+    this.navigate();
+  }
+
   navigate() {
     this.nv = new navio(this.Navegante, 600);
     fetch(this.state.inputValue)
-    .then(data => this.nv.data(data))
-    .then(this.nv.addAllAttribs());
+    .then(data => data.json())
+    .then(datos => this.nv.data(datos))
+    .then(() => this.nv.addAllAttribs());
   }
 
   
